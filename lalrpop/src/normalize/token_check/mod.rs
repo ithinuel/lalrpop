@@ -351,10 +351,8 @@ fn construct(grammar: &mut Grammar, match_block: MatchBlock) -> NormResult<()> {
             let feature = match error {
                 NamedCaptures => r#"named captures (`(?P<foo>...)`)"#,
                 NonGreedy => r#""non-greedy" repetitions (`*?` or `+?`)"#,
-                WordBoundary => r#"word boundaries (`\b` or `\B`)"#,
-                LineBoundary => r#"line boundaries (`^` or `$`)"#,
-                TextBoundary => r#"text boundaries (`^` or `$`)"#,
                 ByteRegex => r#"byte-based matches"#,
+                LookAround => r#"word boundaries (`\b` or `\B`) or text boundaries (`^`, `$`)"#,
             };
             let literal = &match_entries[index.index()].match_literal;
             return_err!(
